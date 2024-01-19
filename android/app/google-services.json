@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "77141028901",
+    "project_id": "happycatering-f4f9d",
+    "storage_bucket": "happycatering-f4f9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77141028901:android:990b78832db8ada65c0fcc",
+        "android_client_info": {
+          "package_name": "com.example.firebase_auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77141028901-cbecel0s1r0mjk005rgiud97vtlh3n69.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_7rLSDoXI3IITEoLnm-4OkD0BRucgBqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77141028901-cbecel0s1r0mjk005rgiud97vtlh3n69.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "77141028901-b6b0451il9el86f17mi61gr5fsfpj0k0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.happyCatering"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77141028901:android:482657d4135a299a5c0fcc",
+        "android_client_info": {
+          "package_name": "com.example.happy_catering"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77141028901-5mnbnk3sppaf8kqpb1pe0b3ft8tpv2g6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.happy_catering",
+            "certificate_hash": "2d62de95b194d5aa9cfa6419d9c30f6b71884099"
+          }
+        },
+        {
+          "client_id": "77141028901-cbecel0s1r0mjk005rgiud97vtlh3n69.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_7rLSDoXI3IITEoLnm-4OkD0BRucgBqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77141028901-cbecel0s1r0mjk005rgiud97vtlh3n69.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "77141028901-b6b0451il9el86f17mi61gr5fsfpj0k0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.happyCatering"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
