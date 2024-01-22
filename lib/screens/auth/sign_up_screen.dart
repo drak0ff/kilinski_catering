@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:happy_catering/screens/auth/components/happy_catering_text_field.dart';
 import 'package:happy_catering/screens/auth/components/reg_ex.dart';
+import 'package:user_repository/user_repository.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -17,11 +18,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final emailController = TextEditingController();
   final nameController = TextEditingController();
   final surnameController = TextEditingController();
-  final numberController = TextEditingController();
+  final phoneController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  
   IconData iconPassword = CupertinoIcons.eye_fill;
+  
   bool obscurePassword = true;
-  bool signUpRequired = true;
+  bool signUpRequired = false;
   bool containsUpperCase = false;
   bool containsLowerCase = false;
   bool containsNumber = false;
@@ -33,7 +36,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Form (
       key: _formKey,
       child: Center(
-        child: Column(
+        child: SingleChildScrollView(
+          child: Column(
           children: [
             const SizedBox(height: 20),
             SizedBox(
@@ -234,23 +238,74 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 },
               )
             ),
+            const SizedBox(height: 10,),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.2),
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: HappyCateringTextField(
+                controller: phoneController,
+                hintText: 'Phone',
+                obscureText: false,
+                keyboardType: TextInputType.phone,
+                prefixIcon: const Icon(CupertinoIcons.phone),
+                validator: (str) {
+                  if(str!.isEmpty) {
+                    return 'Please fill in this field';
+                  }
+                  else if(str.length < 12 || str.length >= 12) {
+                    return 'Please, enter correct number length';
+                  }
+                  else { return null; }
+                },
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02
+              ),
               !signUpRequired
               ? SizedBox(
                 width: MediaQuery.of(context).size.width * 0.5,
                 child: TextButton(
                   onPressed: () {
                     if(_formKey.currentState!.validate()) {
+                      MyUser myUser = MyUser.empty;
+                      myUser = myUser.copyWith(
+                        email: emailController.text,
+                        name: nameController.text,
+                        surname: surnameController.text,
+                        phone:  phoneController.text
+                      );
+                      setState(() {
+                        
+                      });
                     }
                   },
-                  child: const Placeholder(),
+                  style: TextButton.styleFrom(
+                    elevation: 3.0,
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(60),
+                    )
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                    child: Text(
+                      'Sign up',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600
+                      )
+                    )
+                  ),
                 )
               )
-              : const Placeholder()
+              : const CircularProgressIndicator()
           ]
         ),
       )
-    );
-  }
+    )
+  );
+}
 }
