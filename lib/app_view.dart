@@ -11,20 +11,19 @@ class MyAppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-			title: 'Firebase Auth',
-			theme: ThemeData(
-				colorScheme: const ColorScheme.light(
-          background: Colors.white,
-          onBackground: Colors.black,
-          primary: Color.fromRGBO(206, 147, 216, 1),
-          onPrimary: Colors.black,
-          secondary: Color.fromRGBO(244, 143, 177, 1),
-          onSecondary: Colors.white,
-					tertiary: Color.fromRGBO(255, 204, 128, 1),
+      title: "Happy Catering",
+      theme: ThemeData(
+        colorScheme: const ColorScheme.light(
+          background: Color.fromRGBO(54, 87, 61, 1),
+          onBackground: Colors.white,
+          primary: Color.fromRGBO(237, 156, 0, 1),
+          onPrimary: Colors.white,
+          secondary: Color.fromRGBO(195, 219, 181, 1),
+          onSecondary: Color.fromRGBO(95, 99, 104, 1),
+          tertiary: Color.fromRGBO(137, 134, 134, 1),
           error: Colors.red,
-					outline: Color(0xFF424242)
-        ),
-			),
+          outline: Color.fromRGBO(255, 66, 66, 0)
+        )),
 			home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
 				builder: (context, state) {
 					if(state.status == AuthenticationStatus.authenticated) {
