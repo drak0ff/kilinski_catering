@@ -11,8 +11,8 @@ final class SignInInitial extends SignInState {}
 
 class SignInSuccess extends SignInState {}
 class SignInFailure extends SignInState {
-	final String? message;
+  final String? message;
 
-	const SignInFailure({this.message});
+  const SignInFailure({this.message});
 }
-class SignInProcess extends SignInState {}
+class SignInProcess extends SignInState{}

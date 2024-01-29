@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:happy_catering/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:happy_catering/screens/auth/components/happy_catering_text_field.dart';
 import 'package:happy_catering/screens/auth/components/reg_ex.dart';
 
@@ -94,7 +96,12 @@ class _SignInScreenState extends State<SignInScreen> {
                   width: MediaQuery.of(context).size.width * 0.5,
                   child: ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
+                      if (_formKey.currentState!.validate()) {
+                        context.read<SignInBloc>().add(SignInRequired(
+                          emailController.text, 
+                          passwordController.text)
+                          );
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Theme.of(context).colorScheme.primary,
