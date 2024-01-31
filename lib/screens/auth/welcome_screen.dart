@@ -73,8 +73,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateM
 								),
 							),
 							BackdropFilter(
-								filter: ImageFilter.blur(sigmaX: 100.0, sigmaY: 100.0),
-								child: Container(),
+								filter: ImageFilter.blur(sigmaX: 100.0, sigmaY: 1000.0),
+								child: const Image(image: AssetImage('assets/img/color_logo_no_background.png')),
 							),
 							Align(
 								alignment: Alignment.bottomCenter,

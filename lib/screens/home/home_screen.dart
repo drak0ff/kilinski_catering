@@ -1,26 +1,157 @@
-import 'package:happy_catering/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int currentPageIndex = 0;
+  @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return Scaffold(
-			appBar: AppBar(
-				title: const Text(
-					'Welcome, you are In !'
-				),
-				actions: [
-					IconButton(
-						onPressed: () {
-							context.read<SignInBloc>().add(const SignOutRequired());
-						}, 
-						icon: const Icon(Icons.login)
-					)
-				],
-			),
-		);
+      bottomNavigationBar: NavigationBar(
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
+        indicatorColor: theme.colorScheme.primary,
+        selectedIndex: currentPageIndex,
+        destinations: const <Widget>[
+          NavigationDestination(
+            selectedIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          NavigationDestination(
+              selectedIcon: Icon(Icons.add),
+              icon: Icon(Icons.add_outlined),
+              label: 'Add'),
+          NavigationDestination(
+              selectedIcon: Icon(Icons.person),
+              icon: Icon(Icons.person_outlined),
+              label: 'Profile')
+        ],
+        backgroundColor: theme.colorScheme.secondary,
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+      ),
+      body: <Widget>[
+        /// Home pag
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 5.5,
+                  width: MediaQuery.of(context).size.height / 5.5,
+                  child: const Image(
+                      image: AssetImage(
+                          'assets/img/only_color_logo_no_background.png')),
+                ),
+              ],
+            ),
+            Center(
+                child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 16.0,
+                      right: 16.0,
+                    ),
+                    child: Card(
+                        color: theme.colorScheme.secondary,
+                        shadowColor: Colors.transparent,
+                        child: Column(children: <Widget>[
+                          Container(
+                              height: MediaQuery.of(context).size.height / 10,
+                              padding: const EdgeInsets.all(10),
+                              child: const Image(
+                                  image: AssetImage('assets/img/cancel.png'))),
+                          const Center(
+                            child: Padding(
+                              padding: EdgeInsets.only(bottom: 16),
+                            child: Text(
+                              'Looks like you don' 't have any order yet ',
+                            ),
+                          )),
+                        ]))))
+          ],
+        ),
+
+        /// Notifications page
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Column(
+            children: <Widget>[
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.notifications_sharp),
+                  title: Text('Notification 1'),
+                  subtitle: Text('This is a notification'),
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.notifications_sharp),
+                  title: Text('Notification 2'),
+                  subtitle: Text('This is a notification'),
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        /// Messages page
+        ListView.builder(
+          reverse: true,
+          itemCount: 2,
+          itemBuilder: (BuildContext context, int index) {
+            if (index == 0) {
+              return Align(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  margin: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.primary,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Text(
+                    'Hello',
+                    style: theme.textTheme.bodyLarge!
+                        .copyWith(color: theme.colorScheme.onPrimary),
+                  ),
+                ),
+              );
+            }
+            return Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                margin: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.primary,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Text(
+                  'Hi!',
+                  style: theme.textTheme.bodyLarge!
+                      .copyWith(color: theme.colorScheme.onPrimary),
+                ),
+              ),
+            );
+          },
+        ),
+      ][currentPageIndex],
+    );
   }
 }
