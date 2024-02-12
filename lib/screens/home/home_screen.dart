@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../blocs/sign_in_bloc/sign_in_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,10 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Home',
           ),
           NavigationDestination(
-              selectedIcon: Icon(Icons.add),
-              icon: Icon(Icons.add_outlined),
-              label: 'Add'),
-          NavigationDestination(
               selectedIcon: Icon(Icons.person),
               icon: Icon(Icons.person_outlined),
               label: 'Profile')
@@ -41,8 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
         labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
       ),
       body: <Widget>[
-        /// Home pag
-        Column(
+        SafeArea(
+            child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,40 +51,49 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 5.5,
-                  width: MediaQuery.of(context).size.height / 5.5,
-                  child: const Image(
-                      image: AssetImage(
-                          'assets/img/only_color_logo_no_background.png')),
-                ),
+                Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height / 7,
+                    width: MediaQuery.of(context).size.height / 6,
+                    child: const Image(
+                        image: AssetImage(
+                            'assets/img/only_color_logo_no_background.png')),
+                  ),
+                )
               ],
             ),
             Center(
-                child: Padding(
-                    padding: const EdgeInsets.only(
-                      left: 16.0,
-                      right: 16.0,
-                    ),
-                    child: Card(
-                        color: theme.colorScheme.secondary,
-                        shadowColor: Colors.transparent,
-                        child: Column(children: <Widget>[
-                          Container(
-                              height: MediaQuery.of(context).size.height / 10,
-                              padding: const EdgeInsets.all(10),
-                              child: const Image(
-                                  image: AssetImage('assets/img/cancel.png'))),
-                          const Center(
-                            child: Padding(
-                              padding: EdgeInsets.only(bottom: 16),
-                            child: Text(
-                              'Looks like you don' 't have any order yet ',
-                            ),
-                          )),
-                        ]))))
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: 16.0,
+                  right: 16.0,
+                ),
+                child: Card(
+                  color: theme.colorScheme.secondary,
+                  shadowColor: Colors.transparent,
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                          height: MediaQuery.of(context).size.height / 10,
+                          padding: const EdgeInsets.all(10),
+                          child: const Image(
+                              image: AssetImage('assets/img/cancel.png'))),
+                      const Center(
+                        child: Padding(
+                          padding: EdgeInsets.only(bottom: 16),
+                          child: Text(
+                            'Looks like you don' 't have any order yet ',
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
           ],
-        ),
+        )),
 
         /// Notifications page
         const Padding(

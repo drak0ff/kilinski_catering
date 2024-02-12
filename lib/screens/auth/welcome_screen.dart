@@ -68,12 +68,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateM
 									width: MediaQuery.of(context).size.width / 1.3,
 									decoration: BoxDecoration(
 										shape: BoxShape.circle,
-										color: Theme.of(context).colorScheme.primary
+										color: Theme.of(context).colorScheme.secondary
 									),
 								),
 							),
 							BackdropFilter(
-								filter: ImageFilter.blur(sigmaX: 100.0, sigmaY: 1000.0),
+								filter: ImageFilter.blur(sigmaX: 50.0, sigmaY: 100.0),
 								child: const Image(image: AssetImage('assets/img/color_logo_no_background.png')),
 							),
 							Align(
