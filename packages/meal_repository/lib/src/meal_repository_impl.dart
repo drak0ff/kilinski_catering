@@ -18,22 +18,24 @@ class MealRepository implements AbstractMealRepository {
         fromFirestore: Meal.fromFirestore,
         toFirestore: (Meal meal, _) => meal.toFirestore(),
       ).get();
-      List<Meal> meals = querySnapshot.docs.map((doc) => doc.data()).toList();
-
-      return meals;
+      return querySnapshot.docs.map((doc) => doc.data()).toList();
     } catch (e) {
-      print("Error getting meals by diet: $e");
-
-
-
-
-            return null;
+      log("Error getting meals by diet: $e");
+      return null;
     }
   }
 
   @override
-  Future<List<Meal>> getMealsByMealType(Type mealtime) {
-    // TODO: implement getMealsByMealType
+  Future<List<Meal>> getMealsByMealType(String dietName, Type mealtime) async {
+    try {
+      final collectionReference = await _firestore.collection(dietName).withConverter(
+          fromFirestore: Meal.fromFirestore, toFirestore: (Meal meal, _) => meal.toFirestore());
+      final meals = collectionReference.where('type', isEqualTo: mealtime).get();
+
+    }
+    catch (e) {
+
+    }
     throw UnimplementedError();
   }
 

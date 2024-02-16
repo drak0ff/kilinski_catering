@@ -7,8 +7,8 @@ import 'package:user_repository/user_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'simple_bloc_observer.dart';
 
+import 'package:meal_repository/meal_repository.dart';
 import 'dart:developer';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -16,7 +16,10 @@ void main() async {
   );
   Bloc.observer = SimpleBlocObserver();
   runApp(MyApp(FirebaseUserRepo()));
+  MealRepository reps = MealRepository();
+      log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
 
+  log(reps.getMealsByDiet('gain_weight').toString());
   // FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   // List<Map<String, dynamic>> keto = [
     // {

@@ -1,5 +1,5 @@
 name: happy_catering
-description: flutter_final_projects
+description: flutter_final_project
 publish_to: 'none'
 version: 0.0.1
 
@@ -16,6 +16,8 @@ dependencies:
   equatable: ^2.0.5
   user_repository:
     path: packages/user_repository
+  meal_repository:
+    path: packages/meal_repository
 
 flutter:
   uses-material-design: true
