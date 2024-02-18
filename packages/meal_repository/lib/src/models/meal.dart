@@ -1,19 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
-enum Type { breakfast, dinner, supper, none }
+enum MealType { breakfast, dinner, supper, none }
 
 extension TypeString on String {
-  Type get topic {
+  MealType get topic {
     switch (this) {
       case 'breakfast':
-        return Type.breakfast;
+        return MealType.breakfast;
       case 'dinner':
-        return Type.dinner;
+        return MealType.dinner;
       case 'supper':
-        return Type.supper;
+        return MealType.supper;
       default:
-        return Type.none;
+        return MealType.none;
     }
   }
 }
@@ -22,7 +22,7 @@ class Meal extends Equatable {
   final List<int>? calorieDensity;
   final String? name;
   final double? rating;
-  final Type? type;
+  final MealType? type;
 
   const Meal(
       {required this.calorieDensity,
@@ -30,7 +30,7 @@ class Meal extends Equatable {
       required this.rating,
       required this.type});
 
-  factory Meal.fromFirestore(
+  factory Meal.FromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,
     SnapshotOptions? option,
   ) {
@@ -42,19 +42,19 @@ class Meal extends Equatable {
       type: (() {
         switch (data?['Type']) {
           case 'breakfast':
-            return Type.breakfast;
+            return MealType.breakfast;
           case 'dinner':
-            return Type.dinner;
+            return MealType.dinner;
           case 'supper':
-            return Type.supper;
+            return MealType.supper;
           default:
-            return Type.none;
+            return MealType.none;
         }
       })(),
     );
   }
 
-  Map<String, dynamic> toFirestore() {
+  Map<String, dynamic> ToFirestore() {
     return {
       if (calorieDensity != null) "calorieDensity": calorieDensity,
       if (name != null) "name": name,

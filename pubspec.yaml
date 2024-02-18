@@ -18,6 +18,8 @@ dependencies:
     path: packages/user_repository
   meal_repository:
     path: packages/meal_repository
+  order_repository:
+    path: packages/order_repository
 
 flutter:
   uses-material-design: true

@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meal_repository/src/models/meal.dart';
 
-import 'abstract_meal_repository.dart';
+import 'abstract_meal_repo.dart';
 
-class MealRepository implements AbstractMealRepository {
+class MealRepository implements AbstractMealRepo {
   final FirebaseFirestore _firestore;
 
   MealRepository({
@@ -18,8 +18,8 @@ class MealRepository implements AbstractMealRepository {
       final querySnapshot = await _firestore
           .collection(dietName)
           .withConverter(
-            fromFirestore: Meal.fromFirestore,
-            toFirestore: (Meal meal, _) => meal.toFirestore(),
+            fromFirestore: Meal.FromFirestore,
+            toFirestore: (Meal meal, _) => meal.ToFirestore(),
           )
           .get();
       return querySnapshot.docs.map((doc) => doc.data()).toList();
@@ -30,13 +30,14 @@ class MealRepository implements AbstractMealRepository {
   }
 
   @override
-  Future<List<Meal>?> getMealsByMealType(String dietName, Type mealtime) async {
+  Future<List<Meal>?> getMealsByMealType(
+      String dietName, MealType mealtime) async {
     try {
       return await _firestore
           .collection(dietName)
           .withConverter(
-              fromFirestore: Meal.fromFirestore,
-              toFirestore: (Meal meal, _) => meal.toFirestore())
+              fromFirestore: Meal.FromFirestore,
+              toFirestore: (Meal meal, _) => meal.ToFirestore())
           .where('Type', isEqualTo: mealtime.name)
           .get()
           .then((value) => value.docs.map((doc) => doc.data()).toList());

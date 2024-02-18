@@ -9,3 +9,5 @@ environment:
 dependencies:
   equatable: ^2.0.5
   cloud_firestore: ^4.15.4
+  meal_repository:
+    path: ../meal_repository
