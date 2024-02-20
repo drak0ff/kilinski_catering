@@ -1,11 +1,8 @@
-import 'dart:developer';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:happy_catering/app.dart';
 import 'package:happy_catering/firebase_options.dart';
-import 'package:order_repository/order_repository.dart';
 import 'package:user_repository/user_repository.dart';
 
 import 'simple_bloc_observer.dart';
@@ -15,16 +12,16 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  Bloc.observer = SimpleBlocObserver();
   final firebaseUserRepo = FirebaseUserRepo();
+  Bloc.observer = SimpleBlocObserver();
   runApp(MyApp(firebaseUserRepo));
-  OrderRepository orderRepository = OrderRepository();
 
-  final orders = await orderRepository.getOrders(firebaseUserRepo.auth.currentUser?.uid);
-
-  orders?.forEach((element) {
-    log(element.toString());
-  });
+  // final orders =
+  //     await orderRepository.getOrders(firebaseUserRepo.auth.currentUser?.uid);
+  //
+  // orders?.forEach((element) {
+  //   log(element.toString());
+  // });
 
   // FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   // List<Map<String, dynamic>> keto = [

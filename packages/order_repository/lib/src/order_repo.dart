@@ -20,6 +20,7 @@ class OrderRepository implements AbstractOrderRepo {
               toFirestore: (MealOrder order, _) => order.ToFirestore())
           .where('UserId', isEqualTo: userId)
           .get();
+      log("sukes");
       return querySnapshot.docs.map((doc) => doc.data()).toList();
     } catch (e) {
       log("Error getting orders: $e");
