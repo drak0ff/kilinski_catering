@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:happy_catering/blocs/components_bloc/card_bloc/card_bloc.dart';
-import 'package:happy_catering/screens/home/components/HappyCateringOrderCard.dart';
+import 'package:happy_catering/screens/home/components/HappyCateringOrderCardCarousel.dart';
 import 'package:order_repository/order_repository.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       left: 16.0,
                       right: 16.0,
                     ),
-                    child: HappyCateringOrderCard()),
+                    child: HappyCateringOrderCardCarousel()),
               )
             ],
           )),

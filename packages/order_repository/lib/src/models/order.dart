@@ -7,6 +7,7 @@ class MealOrder extends Equatable {
   final String? orderId;
   final String? userId;
   final String? dietId;
+  final String? dietName;
   final Status? status;
   final DateTime? timeStamp;
   final int? days;
@@ -20,6 +21,7 @@ class MealOrder extends Equatable {
       {required this.orderId,
       required this.userId,
       required this.dietId,
+      required this.dietName,
       required this.status,
       required this.timeStamp,
       required this.days,
@@ -35,6 +37,7 @@ class MealOrder extends Equatable {
         orderId: data?['OrderId'],
         userId: data?['UserId'],
         dietId: data?['DataId'],
+        dietName: data?['DietName'],
         status: (() {
           switch (data?['Status']) {
             case 'pending':

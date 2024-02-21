@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class HappyCateringEmpyCard extends StatelessWidget {
+class HappyCateringEmptyCard extends StatelessWidget {
+  const HappyCateringEmptyCard({super.key});
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
-
     return Card(
       color: theme.colorScheme.secondary,
       shadowColor: Colors.transparent,

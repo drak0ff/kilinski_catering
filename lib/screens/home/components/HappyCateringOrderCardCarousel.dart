@@ -5,16 +5,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:happy_catering/blocs/components_bloc/card_bloc/card_bloc.dart';
 import 'package:happy_catering/blocs/components_bloc/card_bloc/card_event.dart';
 import 'package:happy_catering/blocs/components_bloc/card_bloc/card_state.dart';
-import 'package:happy_catering/screens/home/components/HappyCateringEmpyCard.dart';
+import 'package:happy_catering/screens/home/components/HappyCateringCard.dart';
+import 'package:happy_catering/screens/home/components/HappyCateringDataCard.dart';
 
-class HappyCateringOrderCard extends StatefulWidget {
-  const HappyCateringOrderCard({super.key});
+class HappyCateringOrderCardCarousel extends StatefulWidget {
+  const HappyCateringOrderCardCarousel({super.key});
 
   @override
-  State<HappyCateringOrderCard> createState() => _HappyCateringOrderCardState();
+  State<HappyCateringOrderCardCarousel> createState() =>
+      _HappyCateringOrderCardCarouselState();
 }
 
-class _HappyCateringOrderCardState extends State<HappyCateringOrderCard> {
+class _HappyCateringOrderCardCarouselState
+    extends State<HappyCateringOrderCardCarousel> {
   final PageController _controller = PageController(viewportFraction: 0.8);
 
   @override
@@ -23,7 +26,7 @@ class _HappyCateringOrderCardState extends State<HappyCateringOrderCard> {
     return BlocBuilder<CardBloc, CardState>(builder: (context, state) {
       context.read<CardBloc>().add(DisplayMealOrder());
       if (state is DisplayNoDataCardState) {
-        return HappyCateringEmpyCard();
+        return const HappyCateringEmptyCard();
       } else {
         final itemCount = (state as DisplayDataCardState).orders?.length;
         log(itemCount.toString());
@@ -42,13 +45,17 @@ class _HappyCateringOrderCardState extends State<HappyCateringOrderCard> {
                     }
                     return Center(
                         child: SizedBox(
-                            height: 70 + (factor * 30),
-                            child: Card(
-                              elevation: 4,
-                              child: Center(
-                                child: Text('Card $index'),
-                              ),
-                            )));
+                      height: 70 + (factor * 30),
+                      child: HappyCateringDataCard(
+                        //TODO Fix strange field invocations
+                        dietName: state.orders?[index].dietName ?? '',
+                        nextDeliveryAt: DateTime.now().add(
+                            Duration(days: state.orders?[index].days ?? 0)),
+                        pictureUrl:
+                            "fedfwefw113r32f", //TODO need to place real url,
+                        onShowMenuPressed: () {},
+                      ),
+                    ));
                   });
             },
           ),
