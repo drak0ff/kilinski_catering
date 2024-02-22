@@ -77,29 +77,140 @@ class _HomeScreenState extends State<HomeScreen> {
               )
             ],
           )),
-
-          /// Notifications page
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(8.0),
             child: Column(
-              children: <Widget>[
-                Card(
-                  child: ListTile(
-                    leading: Icon(Icons.notifications_sharp),
-                    title: Text('Notification 1'),
-                    subtitle: Text('This is a notification'),
+              children: [
+                SizedBox(
+                  height: 100, // Встановлюємо висоту логотипу
+                  child: Image.asset(
+                    'assets/img/only_color_logo_no_background.png', // Шлях до зображення логотипу
+                    fit: BoxFit.contain, // Збільшуємо або зменшуємо логотип, щоб вміститися
                   ),
                 ),
-                Card(
-                  child: ListTile(
-                    leading: Icon(Icons.notifications_sharp),
-                    title: Text('Notification 2'),
-                    subtitle: Text('This is a notification'),
+                SizedBox(height: 20), // Проміжок між логотипом і текстом "Hi, user"
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Hi, user',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // Navigate to "Change your data" screen
+                          },
+                          child: Text('Change your data'),
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            overlayColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                              if (states.contains(MaterialState.pressed)) {
+                                return Color.fromRGBO(237, 156, 0, 1); // Колір обводки під час натискання
+                              }
+                              return Theme.of(context).colorScheme.tertiary; // Колір обводки в звичайному стані
+                            }),
+                            backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary),
+                            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // Navigate to "Rules" screen
+                          },
+                          child: Text('Rules'),
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            overlayColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                              if (states.contains(MaterialState.pressed)) {
+                                return Color.fromRGBO(237, 156, 0, 1); // Колір обводки під час натискання
+                              }
+                              return Theme.of(context).colorScheme.tertiary; // Колір обводки в звичайному стані
+                            }),
+                            backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary),
+                            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // Navigate to "Order history" screen
+                          },
+                          child: Text('Order history'),
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            overlayColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                              if (states.contains(MaterialState.pressed)) {
+                                return Color.fromRGBO(237, 156, 0, 1); // Колір обводки під час натискання
+                              }
+                              return Theme.of(context).colorScheme.tertiary; // Колір обводки в звичайному стані
+                            }),
+                            backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary),
+                            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(height: 10),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // Log out
+                          },
+                          child: Text('Log out'),
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            overlayColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                              if (states.contains(MaterialState.pressed)) {
+                                return Color.fromRGBO(237, 156, 0, 1); // Колір обводки під час натискання
+                              }
+                              return Theme.of(context).colorScheme.tertiary; // Колір обводки в звичайному стані
+                            }),
+                            backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary),
+                            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
           ),
+
+
+
+
 
           /// Messages page
           ListView.builder(

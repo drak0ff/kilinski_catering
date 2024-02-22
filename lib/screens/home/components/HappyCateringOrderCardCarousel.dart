@@ -9,7 +9,7 @@ import 'package:happy_catering/screens/home/components/HappyCateringCard.dart';
 import 'package:happy_catering/screens/home/components/HappyCateringDataCard.dart';
 
 class HappyCateringOrderCardCarousel extends StatefulWidget {
-  const HappyCateringOrderCardCarousel({super.key});
+  const HappyCateringOrderCardCarousel({Key? key});
 
   @override
   State<HappyCateringOrderCardCarousel> createState() =>
@@ -31,7 +31,7 @@ class _HappyCateringOrderCardCarouselState
         final itemCount = (state as DisplayDataCardState).orders?.length;
         log(itemCount.toString());
         return SizedBox(
-          height: 100,
+          height: 300, // Adjust the height as needed
           child: PageView.builder(
             itemCount: itemCount,
             controller: _controller,
@@ -45,17 +45,16 @@ class _HappyCateringOrderCardCarouselState
                     }
                     return Center(
                         child: SizedBox(
-                      height: 70 + (factor * 30),
-                      child: HappyCateringDataCard(
-                        //TODO Fix strange field invocations
-                        dietName: state.orders?[index].dietName ?? '',
-                        nextDeliveryAt: DateTime.now().add(
-                            Duration(days: state.orders?[index].days ?? 0)),
-                        pictureUrl:
+                          height: 150, // Adjust the height as needed
+                          child: HappyCateringDataCard(
+                            dietName: state.orders?[index].dietName ?? '',
+                            nextDeliveryAt: DateTime.now().add(
+                                Duration(days: state.orders?[index].days ?? 0)),
+                            pictureUrl:
                             "fedfwefw113r32f", //TODO need to place real url,
-                        onShowMenuPressed: () {},
-                      ),
-                    ));
+                            onShowMenuPressed: () {},
+                          ),
+                        ));
                   });
             },
           ),
