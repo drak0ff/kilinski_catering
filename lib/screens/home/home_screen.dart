@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:happy_catering/blocs/components_bloc/card_bloc/card_bloc.dart';
-import 'package:happy_catering/screens/home/components/HappyCateringOrderCardCarousel.dart';
+import 'package:happy_catering/screens/home/components/order_carousel/HappyCateringOrderCardCarousel.dart';
 import 'package:order_repository/order_repository.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -52,14 +52,14 @@ class _HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(3),
                     child: SizedBox(
-                      height: MediaQuery.of(context).size.height / 7,
-                      width: MediaQuery.of(context).size.height / 6,
+                      height: MediaQuery.of(context).size.height / 5,
+                      width: MediaQuery.of(context).size.height / 5,
                       child: const Image(
                           image: AssetImage(
                               'assets/img/only_color_logo_no_background.png')),
@@ -67,14 +67,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   )
                 ],
               ),
-              Center(
-                child: Padding(
-                    padding: const EdgeInsets.only(
-                      left: 16.0,
-                      right: 16.0,
-                    ),
-                    child: HappyCateringOrderCardCarousel()),
-              )
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Expanded(flex: 1, child: HappyCateringOrderCardCarousel()),
+                ],
+              ),
             ],
           )),
 
