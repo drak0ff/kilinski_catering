@@ -9,4 +9,4 @@ environment:
 dependencies:
   equatable: ^2.0.5
   cloud_firestore: ^4.15.4
-  
+  firebase_storage: ^11.6.6

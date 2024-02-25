@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:happy_catering/blocs/authentication_bloc/authentication_bloc.dart';
 import 'package:happy_catering/screens/auth/welcome_screen.dart';
+import 'package:meal_repository/meal_repository.dart';
 import 'package:order_repository/order_repository.dart';
 
 import 'blocs/sign_in_bloc/sign_in_bloc.dart';
@@ -15,6 +16,7 @@ class MyAppView extends StatelessWidget {
   Widget build(BuildContext context) {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     OrderRepository orderRepository = OrderRepository(firestore: firestore);
+    MealRepository mealRepository = MealRepository(firestore: firestore);
 
     return MaterialApp(
         title: "Happy Catering",
@@ -36,7 +38,10 @@ class MyAppView extends StatelessWidget {
               create: (context) => SignInBloc(
                   userRepository:
                       context.read<AuthenticationBloc>().userRepository),
-              child: HomeScreen(orderRepository: orderRepository),
+              child: HomeScreen(
+                orderRepository: orderRepository,
+                mealRepository: mealRepository,
+              ),
             );
           } else {
             return const WelcomeScreen();

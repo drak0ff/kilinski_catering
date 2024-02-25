@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:happy_catering/blocs/components_bloc/card_bloc/card_bloc.dart';
-import 'package:happy_catering/blocs/components_bloc/card_bloc/card_event.dart';
-import 'package:happy_catering/blocs/components_bloc/card_bloc/card_state.dart';
-import 'package:happy_catering/screens/home/components/order_carousel/HappyCateringDataCard.dart';
+import 'package:happy_catering/blocs/components_bloc/order_card_bloc/order_card_bloc.dart';
+import 'package:happy_catering/blocs/components_bloc/order_card_bloc/order_card_event.dart';
+import 'package:happy_catering/blocs/components_bloc/order_card_bloc/order_card_state.dart';
+import 'package:happy_catering/screens/home/components/order_carousel/HappyCateringOrderDataCard.dart';
 import 'package:intl/intl.dart';
 
 class HappyCateringOrderCardCarousel extends StatefulWidget {
-  const HappyCateringOrderCardCarousel({Key? key});
+  const HappyCateringOrderCardCarousel({super.key});
 
   @override
   State<HappyCateringOrderCardCarousel> createState() =>
@@ -20,17 +20,18 @@ class _HappyCateringOrderCardCarouselState
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CardBloc, CardState>(builder: (context, state) {
-      context.read<CardBloc>().add(DisplayMealOrder());
-      if (state is DisplayNoDataCardState) {
-        return HappyCateringDataCard(hasData: false);
+    return BlocBuilder<OrderCardBloc, OrderCardState>(
+        builder: (context, state) {
+      context.read<OrderCardBloc>().add(DisplayMealOrderCard());
+      if (state is DisplayNoDataOrderCardState) {
+        return HappyCateringOrderDataCard(hasData: false);
       } else {
-        final itemCount = (state as DisplayDataCardState).orders?.length;
+        final itemCount = (state as DisplayDataOrderCardState).orders?.length;
         return GestureDetector(
           onTap: () {
             print('Clicked');
           },
-          child: Container(
+          child: SizedBox(
             height: 200, // Fixed height to avoid overflow
             child: PageView.builder(
               itemCount: itemCount,
@@ -44,9 +45,10 @@ class _HappyCateringOrderCardCarouselState
                     return Center(
                       child: SizedBox(
                         height: 400, // Adjust the height as needed
-                        child: HappyCateringDataCard(
+                        child: HappyCateringOrderDataCard(
                           orderName: order?.dietName ?? '',
                           nextDeliveryAt: formattedDate,
+                          imageUrl: order?.dietName,
                           hasData: true, // TODO: need to place real URL
                         ),
                       ),
@@ -68,13 +70,10 @@ class _HappyCateringOrderCardCarouselState
     final difference = date.difference(now);
 
     if (difference.inDays == 0) {
-      // Today with time
       return 'Today ${DateFormat.jm().format(date)}';
     } else if (difference.inDays == 1) {
-      // Tomorrow with time
       return 'Tomorrow ${DateFormat.jm().format(date)}';
     } else {
-      // Weekday with time
       return DateFormat('EEEE ${DateFormat.jm().pattern}').format(date);
     }
   }

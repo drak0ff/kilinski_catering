@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-class HappyCateringDataCard extends StatelessWidget {
+class HappyCateringOrderDataCard extends StatelessWidget {
   final bool hasData;
   final String orderName;
   final String nextDeliveryAt;
+  final String? imageUrl;
 
-  HappyCateringDataCard(
+  HappyCateringOrderDataCard(
       {super.key,
       required this.hasData,
       this.orderName = "",
-      this.nextDeliveryAt = ""});
+      this.nextDeliveryAt = "",
+      this.imageUrl = ""});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,7 @@ class HappyCateringDataCard extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: colorScheme.primary),
         color: colorScheme.secondary,
       ),
       child: hasData
@@ -47,11 +50,11 @@ class HappyCateringDataCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.asset(
-                    'assets/img/standard.png', // Replace with your image asset
+                    'assets/img/$orderName.png', // Replace with your image asset
                     width: 100,
                     height: 100,
                     fit: BoxFit.cover,
@@ -68,8 +71,8 @@ class HappyCateringDataCard extends StatelessWidget {
                   width: 100,
                   height: 100,
                 ),
-                SizedBox(height: 16),
-                Text('No data available right now'),
+                const SizedBox(height: 16),
+                const Text('No data available right now'),
               ],
             ),
     );

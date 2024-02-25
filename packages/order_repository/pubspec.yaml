@@ -11,3 +11,4 @@ dependencies:
   cloud_firestore: ^4.15.4
   meal_repository:
     path: ../meal_repository
+
