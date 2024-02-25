@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:happy_catering/blocs/components_bloc/card_bloc/card_bloc.dart';
-import 'package:happy_catering/screens/home/components/HappyCateringOrderCardCarousel.dart';
+import 'package:happy_catering/blocs/components_bloc/diet_card_bloc/diet_card_bloc.dart';
+import 'package:happy_catering/blocs/components_bloc/order_card_bloc/order_card_bloc.dart';
+import 'package:happy_catering/screens/home/components/order_carousel/HappyCateringOrderCardCarousel.dart';
+import 'package:meal_repository/meal_repository.dart';
 import 'package:order_repository/order_repository.dart';
+
+import 'components/diets_carousel/HappyCateringDietCardCarousel.dart';
 
 class HomeScreen extends StatefulWidget {
   final OrderRepository orderRepository;
+  final MealRepository mealRepository;
 
-  const HomeScreen({Key? key, required this.orderRepository}) : super(key: key);
+  const HomeScreen(
+      {Key? key, required this.orderRepository, required this.mealRepository})
+      : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -18,8 +25,16 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    return BlocProvider(
-      create: (context) => CardBloc(orderRepository: widget.orderRepository),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<OrderCardBloc>(
+            create: (context) => OrderCardBloc(
+                orderRepository: widget.orderRepository,
+                mealRepository: widget.mealRepository)),
+        BlocProvider<DietCardBloc>(
+            create: (context) =>
+                DietCardBloc(mealRepository: widget.mealRepository)),
+      ],
       child: Scaffold(
         bottomNavigationBar: NavigationBar(
           onDestinationSelected: (int index) {
@@ -52,14 +67,14 @@ class _HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(3),
                     child: SizedBox(
-                      height: MediaQuery.of(context).size.height / 7,
-                      width: MediaQuery.of(context).size.height / 6,
+                      height: MediaQuery.of(context).size.height / 5,
+                      width: MediaQuery.of(context).size.height / 5,
                       child: const Image(
                           image: AssetImage(
                               'assets/img/only_color_logo_no_background.png')),
@@ -67,14 +82,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   )
                 ],
               ),
-              Center(
-                child: Padding(
-                    padding: const EdgeInsets.only(
-                      left: 16.0,
-                      right: 16.0,
-                    ),
-                    child: HappyCateringOrderCardCarousel()),
-              )
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Expanded(flex: 1, child: HappyCateringOrderCardCarousel()),
+                ],
+              ),
+              const Padding(
+                padding: EdgeInsets.only(top: 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Expanded(flex: 1, child: HappyCateringDietCardCarousel()),
+                  ],
+                ),
+              ),
             ],
           )),
 
