@@ -93,33 +93,33 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
           !signInRequired
               ? SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        context.read<SignInBloc>().add(SignInRequired(
-                          emailController.text, 
-                          passwordController.text)
-                          );
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 60, vertical: 5),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Sign In'),
-                        Icon(Icons.arrow_forward),
-                      ],
-                    ),
-                  ))
+              width: MediaQuery.of(context).size.width * 0.5,
+              child: ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    context.read<SignInBloc>().add(SignInRequired(
+                        emailController.text,
+                        passwordController.text)
+                    );
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 60, vertical: 5),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Sign In'),
+                    Icon(Icons.arrow_forward),
+                  ],
+                ),
+              ))
               : const CircularProgressIndicator(),
         ]));
   }

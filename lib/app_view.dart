@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:happy_catering/blocs/authentication_bloc/authentication_bloc.dart';
@@ -31,16 +32,18 @@ class MyAppView extends StatelessWidget {
                 outline: Color.fromRGBO(255, 66, 66, 0))),
         home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
             builder: (context, state) {
-          if (state.status == AuthenticationStatus.authenticated) {
-            return BlocProvider(
-              create: (context) => SignInBloc(
-                  userRepository:
+              if (state.status == AuthenticationStatus.authenticated) {
+                return BlocProvider(
+                  create: (context) => SignInBloc(
+                      userRepository:
                       context.read<AuthenticationBloc>().userRepository),
-              child: HomeScreen(orderRepository: orderRepository),
-            );
-          } else {
-            return const WelcomeScreen();
-          }
-        }));
+                  child: HomeScreen(
+                    orderRepository: orderRepository,
+                  ),
+                );
+              } else {
+                return const WelcomeScreen();
+              }
+            }));
   }
 }

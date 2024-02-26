@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:happy_catering/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:happy_catering/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:happy_catering/screens/auth/components/happy_catering_text_field.dart';
 import 'package:happy_catering/screens/auth/components/reg_ex.dart';

@@ -3,6 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:happy_catering/blocs/components_bloc/card_bloc/card_bloc.dart';
 import 'package:happy_catering/screens/home/components/HappyCateringOrderCardCarousel.dart';
 import 'package:order_repository/order_repository.dart';
+import 'package:happy_catering/screens/terms/TermsAndConditions.dart';
+import 'package:happy_catering/screens/change_data/change_data.dart';
+import 'package:happy_catering/screens/ordering/ordering.dart';
+
 
 class HomeScreen extends StatefulWidget {
   final OrderRepository orderRepository;
@@ -46,37 +50,37 @@ class _HomeScreenState extends State<HomeScreen> {
         body: <Widget>[
           SafeArea(
               child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(3),
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.height / 7,
-                      width: MediaQuery.of(context).size.height / 6,
-                      child: const Image(
-                          image: AssetImage(
-                              'assets/img/only_color_logo_no_background.png')),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(3),
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height / 7,
+                          width: MediaQuery.of(context).size.height / 6,
+                          child: const Image(
+                              image: AssetImage(
+                                  'assets/img/only_color_logo_no_background.png')),
+                        ),
+                      )
+                    ],
+                  ),
+                  Center(
+                    child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 16.0,
+                          right: 16.0,
+                        ),
+                        child: HappyCateringOrderCardCarousel()),
                   )
                 ],
-              ),
-              Center(
-                child: Padding(
-                    padding: const EdgeInsets.only(
-                      left: 16.0,
-                      right: 16.0,
-                    ),
-                    child: HappyCateringOrderCardCarousel()),
-              )
-            ],
-          )),
+              )),
           Padding(
             padding: EdgeInsets.all(8.0),
             child: Column(
@@ -105,7 +109,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            // Navigate to "Change your data" screen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ChangeDataScreen(orderRepository: widget.orderRepository)), // Передача параметра orderRepository
+                            );
                           },
                           child: Text('Change your data'),
                           style: ButtonStyle(
@@ -130,22 +137,24 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            // Navigate to "Rules" screen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => TermsAndConditionsScreen()), // Перехід на екран з правилами
+                            );
                           },
-                          child: Text('Rules'),
+                          child: Text('Terms'),
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                            overlayColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                            backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
                               if (states.contains(MaterialState.pressed)) {
                                 return Color.fromRGBO(237, 156, 0, 1); // Колір обводки під час натискання
                               }
-                              return Theme.of(context).colorScheme.tertiary; // Колір обводки в звичайному стані
+                              return Theme.of(context).colorScheme.primary; // Колір фону в звичайному стані
                             }),
-                            backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary),
                             foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                           ),
                         ),
@@ -198,6 +207,29 @@ class _HomeScreenState extends State<HomeScreen> {
                             }),
                             backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary),
                             foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(height: 10),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => CalorieSelectionScreen()), // Перехід на екран замовлення
+                            );
+                          },
+                          child: Text('Ordering'), // Текст кнопки
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10), // Радіус закруглення кутів кнопки
+                              ),
+                            ),
+                            backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary), // Фон кнопки
+                            foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Колір тексту кнопки
                           ),
                         ),
                       ),
