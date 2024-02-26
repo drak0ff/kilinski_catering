@@ -5,8 +5,9 @@ import 'package:happy_catering/blocs/components_bloc/order_card_bloc/order_card_
 import 'package:happy_catering/screens/home/components/order_carousel/HappyCateringOrderCardCarousel.dart';
 import 'package:meal_repository/meal_repository.dart';
 import 'package:order_repository/order_repository.dart';
-
-import 'components/diets_carousel/HappyCateringDietCardCarousel.dart';
+import 'package:happy_catering/screens/terms/TermsAndConditions.dart';
+import 'package:happy_catering/screens/change_data/change_data.dart';
+import 'package:happy_catering/screens/ordering/ordering.dart';
 
 class HomeScreen extends StatefulWidget {
   final OrderRepository orderRepository;
@@ -106,19 +107,156 @@ class _HomeScreenState extends State<HomeScreen> {
           const Padding(
             padding: EdgeInsets.all(8.0),
             child: Column(
-              children: <Widget>[
-                Card(
-                  child: ListTile(
-                    leading: Icon(Icons.notifications_sharp),
-                    title: Text('Notification 1'),
-                    subtitle: Text('This is a notification'),
+              children: [
+                SizedBox(
+                  height: 100, // Встановлюємо висоту логотипу
+                  child: Image.asset(
+                    'assets/img/only_color_logo_no_background.png', // Шлях до зображення логотипу
+                    fit: BoxFit.contain, // Збільшуємо або зменшуємо логотип, щоб вміститися
                   ),
                 ),
-                Card(
-                  child: ListTile(
-                    leading: Icon(Icons.notifications_sharp),
-                    title: Text('Notification 2'),
-                    subtitle: Text('This is a notification'),
+                SizedBox(height: 20), // Проміжок між логотипом і текстом "Hi, user"
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Hi, user',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ChangeDataScreen(orderRepository: widget.orderRepository)), // Передача параметра orderRepository
+                            );
+                          },
+                          child: Text('Change your data'),
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            overlayColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                              if (states.contains(MaterialState.pressed)) {
+                                return Color.fromRGBO(237, 156, 0, 1); // Колір обводки під час натискання
+                              }
+                              return Theme.of(context).colorScheme.tertiary; // Колір обводки в звичайному стані
+                            }),
+                            backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary),
+                            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => TermsAndConditionsScreen()), // Перехід на екран з правилами
+                            );
+                          },
+                          child: Text('Terms'),
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                              if (states.contains(MaterialState.pressed)) {
+                                return Color.fromRGBO(237, 156, 0, 1); // Колір обводки під час натискання
+                              }
+                              return Theme.of(context).colorScheme.primary; // Колір фону в звичайному стані
+                            }),
+                            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // Navigate to "Order history" screen
+                          },
+                          child: Text('Order history'),
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            overlayColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                              if (states.contains(MaterialState.pressed)) {
+                                return Color.fromRGBO(237, 156, 0, 1); // Колір обводки під час натискання
+                              }
+                              return Theme.of(context).colorScheme.tertiary; // Колір обводки в звичайному стані
+                            }),
+                            backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary),
+                            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(height: 10),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // Log out
+                          },
+                          child: Text('Log out'),
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            overlayColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                              if (states.contains(MaterialState.pressed)) {
+                                return Color.fromRGBO(237, 156, 0, 1); // Колір обводки під час натискання
+                              }
+                              return Theme.of(context).colorScheme.tertiary; // Колір обводки в звичайному стані
+                            }),
+                            backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary),
+                            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(height: 10),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => CalorieSelectionScreen()), // Перехід на екран замовлення
+                            );
+                          },
+                          child: Text('Ordering'), // Текст кнопки
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10), // Радіус закруглення кутів кнопки
+                              ),
+                            ),
+                            backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary), // Фон кнопки
+                            foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Колір тексту кнопки
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

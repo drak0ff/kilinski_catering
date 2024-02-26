@@ -33,10 +33,15 @@ dependencies:
     path: packages/order_repository
   firebase_storage: ^11.6.6
 
+
+  # Add the flutter_date_pickers dependency here
+  flutter_date_pickers: 0.4.2
+
 flutter:
   uses-material-design: true
-  assets: 
+  assets:
     - assets/img/
+    - assets/txt/
 
 dev_dependencies:
   flutter_test:
