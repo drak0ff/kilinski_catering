@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:happy_catering/screens/order_details/menu_details.dart';
 
 class HappyCateringDietDataCard extends StatelessWidget {
   final String pictureUrl;
@@ -31,8 +32,8 @@ class HappyCateringDietDataCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              width: 200,
               height: 120,
+              width: 200,
               child: Container(
                 width: 150,
                 height: 100,
@@ -64,21 +65,24 @@ class HappyCateringDietDataCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            Container(
-              child: OutlinedButton(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 32.0, vertical: 8.0),
-                  side: BorderSide(color: colorScheme.primary), // Outline color
-                ),
-                child: Text(
-                  'Order >',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 15,
-                    color: colorScheme.tertiary,
-                  ),
+            OutlinedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MenuDetails()),
+                );
+              },
+              style: OutlinedButton.styleFrom(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
+                side: BorderSide(color: colorScheme.primary), // Outline color
+              ),
+              child: Text(
+                'Order >',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 15,
+                  color: colorScheme.tertiary,
                 ),
               ),
             ),

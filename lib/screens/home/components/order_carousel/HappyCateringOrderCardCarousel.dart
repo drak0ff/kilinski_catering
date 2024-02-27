@@ -29,10 +29,10 @@ class _HappyCateringOrderCardCarouselState
         final itemCount = (state as DisplayDataOrderCardState).orders?.length;
         return GestureDetector(
           onTap: () {
-            print('Clicked');
+            print('Clicked'); // TODO: Implement action
           },
           child: SizedBox(
-            height: 200, // Fixed height to avoid overflow
+            height: 200,
             child: PageView.builder(
               itemCount: itemCount,
               controller: _controller,
@@ -44,7 +44,7 @@ class _HappyCateringOrderCardCarouselState
                     final formattedDate = _formatDate(DateTime.now());
                     return Center(
                       child: SizedBox(
-                        height: 400, // Adjust the height as needed
+                        height: 400,
                         child: HappyCateringOrderDataCard(
                           orderName: order?.dietName ?? '',
                           nextDeliveryAt: formattedDate,
