@@ -9,6 +9,8 @@ import 'package:happy_catering/screens/terms/TermsAndConditions.dart';
 import 'package:happy_catering/screens/change_data/change_data.dart';
 import 'package:happy_catering/screens/ordering/ordering.dart';
 
+import 'components/diets_carousel/HappyCateringDietCardCarousel.dart';
+
 class HomeScreen extends StatefulWidget {
   final OrderRepository orderRepository;
   final MealRepository mealRepository;
@@ -104,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
           )),
 
           /// Notifications page
-          const Padding(
+           Padding(
             padding: EdgeInsets.all(8.0),
             child: Column(
               children: [
@@ -120,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(
+                      const Text(
                         'Hi, user',
                         style: TextStyle(
                           fontSize: 24,
@@ -137,7 +139,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               MaterialPageRoute(builder: (context) => ChangeDataScreen(orderRepository: widget.orderRepository)), // Передача параметра orderRepository
                             );
                           },
-                          child: Text('Change your data'),
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                               RoundedRectangleBorder(
@@ -146,16 +147,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             overlayColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
                               if (states.contains(MaterialState.pressed)) {
-                                return Color.fromRGBO(237, 156, 0, 1); // Колір обводки під час натискання
+                                return const Color.fromRGBO(237, 156, 0, 1); // Колір обводки під час натискання
                               }
                               return Theme.of(context).colorScheme.tertiary; // Колір обводки в звичайному стані
                             }),
                             backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary),
                             foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                           ),
+                          child: const Text('Change your data'),
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
@@ -165,7 +167,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               MaterialPageRoute(builder: (context) => TermsAndConditionsScreen()), // Перехід на екран з правилами
                             );
                           },
-                          child: Text('Terms'),
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                               RoundedRectangleBorder(
@@ -174,22 +175,22 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
                               if (states.contains(MaterialState.pressed)) {
-                                return Color.fromRGBO(237, 156, 0, 1); // Колір обводки під час натискання
+                                return const Color.fromRGBO(237, 156, 0, 1); // Колір обводки під час натискання
                               }
                               return Theme.of(context).colorScheme.primary; // Колір фону в звичайному стані
                             }),
                             foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                           ),
+                          child: const Text('Terms'),
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
                             // Navigate to "Order history" screen
                           },
-                          child: Text('Order history'),
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                               RoundedRectangleBorder(
@@ -205,17 +206,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary),
                             foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                           ),
+                          child: const Text('Order history'),
                         ),
                       ),
 
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
                             // Log out
                           },
-                          child: Text('Log out'),
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                               RoundedRectangleBorder(
@@ -231,20 +232,20 @@ class _HomeScreenState extends State<HomeScreen> {
                             backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary),
                             foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                           ),
+                          child: const Text('Log out'),
                         ),
                       ),
 
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => CalorieSelectionScreen()), // Перехід на екран замовлення
+                              MaterialPageRoute(builder: (context) => CalorieSelectionScreen(mealRepository: widget.mealRepository, orderRepository: widget.orderRepository,)), // Перехід на екран замовлення
                             );
-                          },
-                          child: Text('Ordering'), // Текст кнопки
+                          }, // Текст кнопки
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                               RoundedRectangleBorder(
@@ -254,6 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary), // Фон кнопки
                             foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Колір тексту кнопки
                           ),
+                          child: const Text('Ordering'),
                         ),
                       ),
                     ],

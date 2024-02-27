@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:happy_catering/screens/home/home_screen.dart';
+import 'package:meal_repository/meal_repository.dart';
+import 'package:order_repository/order_repository.dart';
 
 class PaymentScreen extends StatelessWidget {
   final int selectedCalorie;
+  final int selectedPeriod;
+  final OrderRepository orderRepository;
+  final MealRepository mealRepository;
 
-  const PaymentScreen({required this.selectedCalorie});
+  const PaymentScreen({
+    Key? key,
+    required this.selectedCalorie,
+    required this.selectedPeriod,
+    required this.orderRepository,
+    required this.mealRepository,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +27,12 @@ class PaymentScreen extends StatelessWidget {
           'Cart',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: theme.colorScheme.primary,
+        backgroundColor: theme.colorScheme.background,
         toolbarHeight: 45,
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(top: 50), // Додано відступ зверху
+          padding: EdgeInsets.only(top: 50),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -55,19 +67,42 @@ class PaymentScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 5),
-                              Text(
-                                'Choosen Calorie Density:',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                ),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Calorie Density: ',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  Text(
+                                    '$selectedCalorie',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                '$selectedCalorie', // Відображення обраної кількості калорій
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                ),
+                              SizedBox(height: 5),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Selected Period: ',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  Text(
+                                    '$selectedPeriod days',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -75,7 +110,7 @@ class PaymentScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 20),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween, // Змінено на MainAxisAlignment.spaceBetween
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           TextButton(
                             onPressed: () {
@@ -84,10 +119,10 @@ class PaymentScreen extends StatelessWidget {
                             child: Row(
                               children: [
                                 Icon(
-                                  Icons.restaurant_menu, // Іконка меню
+                                  Icons.restaurant_menu,
                                   color: Colors.white,
                                 ),
-                                SizedBox(width: 5), // Проміжок між іконкою і текстом
+                                SizedBox(width: 5),
                                 Text(
                                   'Diet Menu',
                                   style: TextStyle(
@@ -100,13 +135,47 @@ class PaymentScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '1500 PLN', // Додано текст "15$"
+                            '1500 PLN',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
                             ),
                           ),
                         ],
+                      ),
+                      SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () {
+                          // Показ повідомлення про успішну оплату на 5 секунд
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Payment successful. You can now check the menu schedule.'),
+                              duration: Duration(seconds: 5),
+                            ),
+                          );
+
+                          // Перенаправлення на домашній екран після успішної оплати
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomeScreen(mealRepository: mealRepository,orderRepository: orderRepository,)),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: theme.colorScheme.secondary,
+                          backgroundColor: theme.colorScheme.primary,
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 60,
+                            vertical: 5,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: Text(
+                          'Pay',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ],
                   ),
