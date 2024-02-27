@@ -1,7 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:happy_catering/screens/payment/payment.dart';
+import 'package:meal_repository/meal_repository.dart';
+import 'package:order_repository/order_repository.dart';
 
 class CalorieSelectionScreen extends StatefulWidget {
+  final OrderRepository orderRepository;
+  final MealRepository mealRepository;
+
+  const CalorieSelectionScreen({super.key, required this.orderRepository, required this.mealRepository});
+
   @override
   _CalorieSelectionScreenState createState() => _CalorieSelectionScreenState();
 }
@@ -23,7 +31,7 @@ class _CalorieSelectionScreenState extends State<CalorieSelectionScreen> {
           'Select Calorie Density',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: theme.colorScheme.primary,
+        backgroundColor: theme.colorScheme.background,
         toolbarHeight: 45,
       ),
       body: SingleChildScrollView(
@@ -177,7 +185,11 @@ class _CalorieSelectionScreenState extends State<CalorieSelectionScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => PaymentScreen(selectedCalorie: selectedCalorie),
+                    builder: (context) => PaymentScreen(
+                      selectedCalorie: selectedCalorie,
+                      selectedPeriod: selectedPeriod,
+                      orderRepository: widget.orderRepository, mealRepository: widget.mealRepository,
+                    ),
                   ),
                 );
               },
@@ -206,7 +218,9 @@ class _CalorieSelectionScreenState extends State<CalorieSelectionScreen> {
 }
 
 void main() {
+  OrderRepository orderRepository = OrderRepository();
+  MealRepository mealRepository = MealRepository();
   runApp(MaterialApp(
-    home: CalorieSelectionScreen(),
+    home: CalorieSelectionScreen(orderRepository: orderRepository, mealRepository: mealRepository,),
   ));
 }
