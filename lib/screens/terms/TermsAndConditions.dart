@@ -27,9 +27,9 @@ class _TermsAndConditionsScreenState extends State<TermsAndConditionsScreen> {
     final ThemeData theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Terms and Conditions'),
-        backgroundColor: theme.colorScheme.primary, // Колір фону навбару
-        toolbarHeight: 45,
+        title: Text('Terms and Conditions', style: TextStyle(color: Colors.white)),
+        backgroundColor: theme.colorScheme.background, // Колір фону навбару
+        toolbarHeight: 100,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

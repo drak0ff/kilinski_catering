@@ -40,9 +40,9 @@ class _ChangeDataScreenState extends State<ChangeDataScreen> {
     final ThemeData theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Change Data', style: TextStyle(color: Colors.white)),
-        backgroundColor: theme.colorScheme.primary, // Колір фону навбару
-        toolbarHeight: 45,
+        title: Text('Change data', style: TextStyle(color: Colors.white)),
+        backgroundColor: theme.colorScheme.background, // Колір фону навбару
+        toolbarHeight: 100,
       ),
       body: SingleChildScrollView(
         child: Padding(

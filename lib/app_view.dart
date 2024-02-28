@@ -20,6 +20,7 @@ class MyAppView extends StatelessWidget {
     MealRepository mealRepository = MealRepository(firestore: firestore);
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
         title: "Happy Catering",
         theme: ThemeData(
             colorScheme: const ColorScheme.light(

@@ -28,11 +28,9 @@ class _CalorieSelectionScreenState extends State<CalorieSelectionScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Select Calorie Density',
-          style: TextStyle(color: Colors.white),
-        ),
-        backgroundColor: theme.colorScheme.background,
-        toolbarHeight: 45,
+          'Details', style: TextStyle(color: Colors.white)),
+    backgroundColor: theme.colorScheme.background, // Колір фону навбару
+    toolbarHeight: 100,
       ),
       body: SingleChildScrollView(
         child: Column(

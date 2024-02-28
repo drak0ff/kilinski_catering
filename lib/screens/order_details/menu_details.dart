@@ -22,17 +22,6 @@ class _MenuDetailsState extends State<MenuDetails> {
       backgroundColor: theme.colorScheme.background,
       appBar: AppBar(
         backgroundColor: theme.colorScheme.background,
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              CupertinoIcons.arrow_left,
-              color: theme.colorScheme.onSecondary,
-            ),
-          ),
-        ],
       ),
       bottomNavigationBar: BottomAppBar(
         color: theme.colorScheme.secondary,
