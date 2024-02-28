@@ -30,9 +30,6 @@ class OrderCardBloc extends Bloc<OrderCardEvent, OrderCardState> {
         imageUrls.forEach((element) {
           log(element.toString());
         });
-
-        log("HALOOOOO");
-
         emit(DisplayDataOrderCardState(orders: orders, imageUrls: imageUrls));
       } catch (e) {
         log("Something wrong");

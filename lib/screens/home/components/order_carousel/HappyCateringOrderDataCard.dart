@@ -32,7 +32,7 @@ class HappyCateringOrderDataCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width: 150, // Adjust the width as needed
+                        width: 150,
                         child: Text(
                           orderName,
                           style: const TextStyle(
@@ -60,15 +60,15 @@ class HappyCateringOrderDataCard extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
               ],
             )
           : Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/img/cancel.png', // Replace with your no data image asset
-                  width: 100,
+                  'assets/img/cancel.png',
+                  width: 200,
                   height: 100,
                 ),
                 const SizedBox(height: 16),

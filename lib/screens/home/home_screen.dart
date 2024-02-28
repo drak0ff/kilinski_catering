@@ -256,6 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: const Text('Order history'),
                         ),
                       ),
+
                       const SizedBox(height: 10),
                       SizedBox(
                         width: double.infinity,
