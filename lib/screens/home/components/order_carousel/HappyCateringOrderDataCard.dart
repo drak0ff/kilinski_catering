@@ -5,13 +5,15 @@ class HappyCateringOrderDataCard extends StatelessWidget {
   final String orderName;
   final String nextDeliveryAt;
   final String? imageUrl;
+  final String bottomText;
 
   HappyCateringOrderDataCard(
       {super.key,
       required this.hasData,
       this.orderName = "",
       this.nextDeliveryAt = "",
-      this.imageUrl = ""});
+      this.imageUrl = "",
+      this.bottomText = ""});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +74,7 @@ class HappyCateringOrderDataCard extends StatelessWidget {
                   height: 100,
                 ),
                 const SizedBox(height: 16),
-                const Text('No data available right now'),
+                Text(bottomText),
               ],
             ),
     );

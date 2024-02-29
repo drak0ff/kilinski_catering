@@ -8,12 +8,15 @@ sealed class OrderCardState extends Equatable {
   List<Object> get props => [];
 }
 
-final class DisplayNoDataOrderCardState extends OrderCardState {}
+class DisplayNoDataOrderCardState extends OrderCardState {
+  final String message;
+
+  const DisplayNoDataOrderCardState(
+      {this.message = 'No data available right now'});
+}
 
 class DisplayDataOrderCardState extends OrderCardState {
   final List<MealOrder>? orders;
-  final List<String?> imageUrls;
 
-  const DisplayDataOrderCardState(
-      {required this.orders, required this.imageUrls});
+  const DisplayDataOrderCardState({required this.orders});
 }
