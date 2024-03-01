@@ -50,7 +50,7 @@ class PaymentScreen extends StatelessWidget {
                       Row(
                         children: [
                           Image.asset(
-                            'assets/img/standard.png',
+                            'assets/img/Vege.png',
                             width: 100,
                             height: 100,
                           ),
@@ -59,7 +59,7 @@ class PaymentScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Diet Name',
+                                'Vege',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,
@@ -149,7 +149,8 @@ class PaymentScreen extends StatelessWidget {
                           // Показ повідомлення про успішну оплату на 5 секунд
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              content: Text('Payment successful. You can now check the menu schedule.'),
+                              content: Text(
+                                  'Payment successful. You can now check the menu schedule.'),
                               duration: Duration(seconds: 5),
                             ),
                           );
@@ -157,7 +158,11 @@ class PaymentScreen extends StatelessWidget {
                           // Перенаправлення на домашній екран після успішної оплати
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => HomeScreen(mealRepository: mealRepository,orderRepository: orderRepository,)),
+                            MaterialPageRoute(
+                                builder: (context) => HomeScreen(
+                                      mealRepository: mealRepository,
+                                      orderRepository: orderRepository,
+                                    )),
                           );
                         },
                         style: ElevatedButton.styleFrom(

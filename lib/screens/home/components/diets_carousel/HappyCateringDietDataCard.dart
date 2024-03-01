@@ -68,10 +68,10 @@ class HappyCateringDietDataCard extends StatelessWidget {
             OutlinedButton(
               onPressed: () {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MenuDetails()),
-                );
-              },
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MenuDetails()));
+              },git
               style: OutlinedButton.styleFrom(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),

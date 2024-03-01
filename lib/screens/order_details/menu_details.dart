@@ -134,11 +134,18 @@ class _MenuDetailsState extends State<MenuDetails> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.max,
                       children: [
+                        DetailsRow(topText: 'Tuesday, 20.02.24'),
                         DetailsRow(
-                            topText: DateTime.now().toLocal().toString()),
-                        DetailsRow(topText: 'Breakfast', bottomText: 'Text1'),
-                        DetailsRow(topText: 'Dinner', bottomText: 'Text2'),
-                        DetailsRow(topText: 'Supper', bottomText: 'Text3'),
+                            topText: 'Breakfast',
+                            bottomText:
+                                'Whole Grain Pancakes with Maple Syrup'),
+                        DetailsRow(
+                            topText: 'Dinner',
+                            bottomText:
+                                'Vegetable Lasagna with Marinara Sauce'),
+                        DetailsRow(
+                            topText: 'Supper',
+                            bottomText: 'Vegetarian Quinoa Bowl'),
                       ],
                     ),
                   );
@@ -170,7 +177,7 @@ class _MenuDetailsState extends State<MenuDetails> {
                 children: [
                   Flexible(
                     child: Text(
-                      'Jeśli chcesz zadbać o siebie, wybierz tę dietę. To idealna dieta dla osób, które chcą zachować zdrowy styl życia i chcą zrzucić kilka kilogramów.',
+                      'If you want to avoid meat and fish, choose these diets. These include eggs, animal milk and honey.',
                       maxLines: 10,
                       overflow: TextOverflow.fade,
                       style: TextStyle(color: theme.colorScheme.onPrimary),

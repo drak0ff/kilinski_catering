@@ -24,7 +24,8 @@ class _HappyCateringOrderCardCarouselState
         builder: (context, state) {
       context.read<OrderCardBloc>().add(DisplayMealOrderCard());
       if (state is DisplayNoDataOrderCardState) {
-        return HappyCateringOrderDataCard(hasData: false);
+        return HappyCateringOrderDataCard(
+            hasData: false, bottomText: state.message);
       } else {
         final itemCount = (state as DisplayDataOrderCardState).orders?.length;
         return GestureDetector(
