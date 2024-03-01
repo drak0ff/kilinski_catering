@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:happy_catering/screens/payment/payment.dart';
-import 'package:meal_repository/meal_repository.dart';
-import 'package:order_repository/order_repository.dart';
+import 'package:happy_catering/screens/order_details/menu_details.dart';
 
 class HappyCateringDietDataCard extends StatelessWidget {
   final String pictureUrl;
@@ -70,15 +68,10 @@ class HappyCateringDietDataCard extends StatelessWidget {
             OutlinedButton(
               onPressed: () {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => PaymentScreen(
-                          selectedCalorie: 2000,
-                          selectedPeriod: 20,
-                          orderRepository: OrderRepository(),
-                          mealRepository: MealRepository())),
-                );
-              },
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MenuDetails()));
+              },git
               style: OutlinedButton.styleFrom(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),

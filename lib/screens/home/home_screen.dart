@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:happy_catering/blocs/components_bloc/diet_card_bloc/diet_card_bloc.dart';
 import 'package:happy_catering/blocs/components_bloc/order_card_bloc/order_card_bloc.dart';
+import 'package:happy_catering/screens/change_data/change_data.dart';
+import 'package:happy_catering/screens/history/history.dart';
 import 'package:happy_catering/screens/home/components/order_carousel/HappyCateringOrderCardCarousel.dart';
+import 'package:happy_catering/screens/terms/TermsAndConditions.dart';
 import 'package:meal_repository/meal_repository.dart';
 import 'package:order_repository/order_repository.dart';
-import 'package:happy_catering/screens/terms/TermsAndConditions.dart';
-import 'package:happy_catering/screens/change_data/change_data.dart';
-import 'package:happy_catering/screens/ordering/ordering.dart';
-import 'package:happy_catering/screens/history/history.dart';
-
-
-import 'components/diets_carousel/HappyCateringDietCardCarousel.dart';
 
 import 'components/diets_carousel/HappyCateringDietCardCarousel.dart';
 
@@ -71,8 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
           backgroundColor: theme.colorScheme.secondary,
-          labelBehavior:
-          NavigationDestinationLabelBehavior.onlyShowSelected,
+          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
         ),
         body: <Widget>[
           SafeArea(
@@ -129,17 +124,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
           /// Notifications page
           Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
                 SizedBox(
-                  height: 100, // Встановлюємо висоту логотипу
+                  height: 100,
                   child: Image.asset(
-                    'assets/img/only_color_logo_no_background.png', // Шлях до зображення логотипу
-                    fit: BoxFit.contain, // Збільшуємо або зменшуємо логотип, щоб вміститися
+                    'assets/img/only_color_logo_no_background.png',
+                    fit: BoxFit.contain,
                   ),
                 ),
-                SizedBox(height: 20), // Проміжок між логотипом і текстом "Hi, user"
+                const SizedBox(height: 20),
                 Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -149,10 +144,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white, // Змінено колір тексту на білий
+                          color: Colors.white,
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
@@ -160,31 +155,31 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    ChangeDataScreen(
-                                      orderRepository: widget.orderRepository,
-                                    ),
+                                builder: (context) => ChangeDataScreen(
+                                  orderRepository: widget.orderRepository,
+                                ),
                               ),
                             );
                           },
                           style: ButtonStyle(
-                            shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                            overlayColor: MaterialStateProperty.resolveWith<Color>(
+                            overlayColor:
+                                MaterialStateProperty.resolveWith<Color>(
                                     (Set<MaterialState> states) {
-                                  if (states.contains(MaterialState.pressed)) {
-                                    return const Color.fromRGBO(237, 156, 0, 1);
-                                  }
-                                  return Theme.of(context).colorScheme.tertiary;
-                                }),
+                              if (states.contains(MaterialState.pressed)) {
+                                return const Color.fromRGBO(237, 156, 0, 1);
+                              }
+                              return Theme.of(context).colorScheme.tertiary;
+                            }),
                             backgroundColor: MaterialStateProperty.all<Color>(
                                 Theme.of(context).colorScheme.primary),
                             foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
+                                MaterialStateProperty.all<Color>(Colors.white),
                           ),
                           child: const Text('Change your data'),
                         ),
@@ -203,21 +198,22 @@ class _HomeScreenState extends State<HomeScreen> {
                             );
                           },
                           style: ButtonStyle(
-                            shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                            backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith<Color>(
                                     (Set<MaterialState> states) {
-                                  if (states.contains(MaterialState.pressed)) {
-                                    return const Color.fromRGBO(237, 156, 0, 1);
-                                  }
-                                  return Theme.of(context).colorScheme.primary;
-                                }),
+                              if (states.contains(MaterialState.pressed)) {
+                                return const Color.fromRGBO(237, 156, 0, 1);
+                              }
+                              return Theme.of(context).colorScheme.primary;
+                            }),
                             foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
+                                MaterialStateProperty.all<Color>(Colors.white),
                           ),
                           child: const Text('Terms and Conditions'),
                         ),
@@ -230,33 +226,34 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => HistoryScreen(), // Перехід на екран історії замовлень
+                                builder: (context) =>
+                                    HistoryScreen(), // Перехід на екран історії замовлень
                               ),
                             );
                           },
                           style: ButtonStyle(
-                            shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                            overlayColor: MaterialStateProperty.resolveWith<Color>(
+                            overlayColor:
+                                MaterialStateProperty.resolveWith<Color>(
                                     (Set<MaterialState> states) {
-                                  if (states.contains(MaterialState.pressed)) {
-                                    return Color.fromRGBO(237, 156, 0, 1);
-                                  }
-                                  return Theme.of(context).colorScheme.tertiary;
-                                }),
+                              if (states.contains(MaterialState.pressed)) {
+                                return Color.fromRGBO(237, 156, 0, 1);
+                              }
+                              return Theme.of(context).colorScheme.tertiary;
+                            }),
                             backgroundColor: MaterialStateProperty.all<Color>(
                                 Theme.of(context).colorScheme.primary),
                             foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
+                                MaterialStateProperty.all<Color>(Colors.white),
                           ),
                           child: const Text('Order history'),
                         ),
                       ),
-
                       const SizedBox(height: 10),
                       SizedBox(
                         width: double.infinity,
@@ -265,23 +262,24 @@ class _HomeScreenState extends State<HomeScreen> {
                             // Log out
                           },
                           style: ButtonStyle(
-                            shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                            overlayColor: MaterialStateProperty.resolveWith<Color>(
+                            overlayColor:
+                                MaterialStateProperty.resolveWith<Color>(
                                     (Set<MaterialState> states) {
-                                  if (states.contains(MaterialState.pressed)) {
-                                    return Color.fromRGBO(237, 156, 0, 1);
-                                  }
-                                  return Theme.of(context).colorScheme.tertiary;
-                                }),
+                              if (states.contains(MaterialState.pressed)) {
+                                return Color.fromRGBO(237, 156, 0, 1);
+                              }
+                              return Theme.of(context).colorScheme.tertiary;
+                            }),
                             backgroundColor: MaterialStateProperty.all<Color>(
                                 Theme.of(context).colorScheme.primary),
                             foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
+                                MaterialStateProperty.all<Color>(Colors.white),
                           ),
                           child: const Text('Log out'),
                         ),
@@ -292,8 +290,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-
-          /// Messages page
+          //Profile
           ListView.builder(
             reverse: true,
             itemCount: 2,
