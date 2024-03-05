@@ -7,7 +7,7 @@ import '../../../../blocs/components_bloc/diet_card_bloc/diet_card_event.dart';
 import 'HappyCateringDietDataCard.dart';
 
 class HappyCateringDietCardCarousel extends StatefulWidget {
-  const HappyCateringDietCardCarousel({Key? key});
+  const HappyCateringDietCardCarousel({super.key});
 
   @override
   State<HappyCateringDietCardCarousel> createState() =>

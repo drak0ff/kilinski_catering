@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:happy_catering/screens/order_details/components/DetailsRow.dart';
 import 'package:happy_catering/screens/order_details/components/HappyCateringRatingButton.dart';
@@ -127,8 +126,8 @@ class _MenuDetailsState extends State<MenuDetails> {
                 itemCount: itemCount,
                 controller: _controller,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  return const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
