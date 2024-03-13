@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:happy_catering/screens/order_details/menu_details.dart';
+
+import '../../../diet_details/MenuDetailsProvider.dart';
+import '../../../diet_details/menu_details.dart';
 
 class HappyCateringDietDataCard extends StatelessWidget {
   final String pictureUrl;
@@ -53,19 +55,17 @@ class HappyCateringDietDataCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    Container(
-                      child: Text(
-                        bottomText,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 24,
-                          color: Colors.black,
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        softWrap: true,
-                        textAlign: TextAlign.center,
+                    Text(
+                      bottomText,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 24,
+                        color: Colors.black,
                       ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      softWrap: true,
+                      textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 8),
                     OutlinedButton(
@@ -73,7 +73,9 @@ class HappyCateringDietDataCard extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const MenuDetails()));
+                                builder: (context) => const MenuDetailsProvider(
+                                      child: MenuDetails(),
+                                    )));
                       },
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(

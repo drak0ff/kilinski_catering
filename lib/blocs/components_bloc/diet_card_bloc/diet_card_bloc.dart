@@ -17,7 +17,7 @@ class DietCardBloc extends Bloc<DietCardEvent, DietCardState> {
         final dietNames = await _mealRepository.getDietsNames();
         emit(DisplayDataDietCardState(dietsNames: dietNames));
       } catch (e) {
-        log("Error in DietCardBloc" + e.toString());
+        log("Error in DietCardBloc$e");
         emit(DisplayNoDataDietCardState());
       }
     });
