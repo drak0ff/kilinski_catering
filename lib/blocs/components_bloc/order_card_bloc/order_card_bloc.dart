@@ -11,7 +11,6 @@ class OrderCardBloc extends Bloc<OrderCardEvent, OrderCardState> {
       {required OrderRepository orderRepository,
       required MealRepository mealRepository})
       : _orderRepository = orderRepository,
-        _mealRepository = mealRepository,
         super(const DisplayNoDataOrderCardState()) {
     on<DisplayMealOrderCard>((event, emit) async {
       try {

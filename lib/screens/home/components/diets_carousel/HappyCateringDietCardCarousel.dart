@@ -7,7 +7,7 @@ import '../../../../blocs/components_bloc/diet_card_bloc/diet_card_event.dart';
 import 'HappyCateringDietDataCard.dart';
 
 class HappyCateringDietCardCarousel extends StatefulWidget {
-  const HappyCateringDietCardCarousel({Key? key});
+  const HappyCateringDietCardCarousel({super.key});
 
   @override
   State<HappyCateringDietCardCarousel> createState() =>
@@ -16,14 +16,16 @@ class HappyCateringDietCardCarousel extends StatefulWidget {
 
 class _HappyCateringDietCardCarouselState
     extends State<HappyCateringDietCardCarousel> {
-  PageController _controller = PageController(viewportFraction: 0.8);
+  final PageController _controller = PageController(viewportFraction: 0.8);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DietCardBloc, DietCardState>(builder: (context, state) {
       context.read<DietCardBloc>().add(DisplayDietCard());
       if (state is DisplayNoDataDietCardState) {
-        return const Placeholder();
+        return const HappyCateringDietDataCard(
+          hasData: false,
+        );
       } else {
         final itemCount =
             (state as DisplayDataDietCardState).dietsNames?.length;
@@ -44,7 +46,8 @@ class _HappyCateringDietCardCarouselState
                       child: SizedBox(
                         height: 400,
                         child: HappyCateringDietDataCard(
-                          dietName: order.toString(),
+                          hasData: true,
+                          bottomText: order.toString(),
                           pictureUrl: "assets/img/" + order.toString() + '.png',
                         ), // TODO: need to place real URL
                       ),

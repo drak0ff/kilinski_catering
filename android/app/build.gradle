@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.firebase_auth"
-    compileSdkVersion 31
+    compileSdkVersion 33
     buildToolsVersion "31.0.0"
     ndkVersion flutter.ndkVersion
 
